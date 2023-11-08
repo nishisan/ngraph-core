@@ -42,7 +42,7 @@ public class DfsBasicStringGraphStressTest {
         /**
          * Initiate interface
          */
-        IGraph<String, StringVertex, StringEdge> graph = new StringGraph();
+        IGraph<String, StringVertex, StringEdge> graph = new StringGraph(1000);
 
         int levels = 3;         // Número de níveis no grafo
         int nodesPerLevel = 4;  // Nós por nível
@@ -100,10 +100,10 @@ public class DfsBasicStringGraphStressTest {
             total.set(0);
             System.out.println("["+x+"] - Trying :" + x);
             Long start = System.currentTimeMillis();
-            int randomThreadCount = rand.nextInt(4) + 1;
+            int randomThreadCount = rand.nextInt(8) + 1;
             System.out.println("["+x+"] - Trying :" + x + " With:" + randomThreadCount + " Threads");
             
-            graph.dfs(firstNode, 0, 2).forEach(a -> {
+            graph.dfs(firstNode, 0, randomThreadCount).forEach(a -> {
                 total.incrementAndGet();
             });
             Long end = System.currentTimeMillis();

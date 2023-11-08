@@ -34,6 +34,10 @@ public class StringGraph extends AbstractGraph<String,StringEdge, StringVertex> 
     public StringGraph() {
         super(new StringElementProvider());
     }
+    
+     public StringGraph(int queueCapacity) {
+        super(new StringElementProvider(),queueCapacity);
+    }
 
     public StringGraph(IElementProvider<String, StringEdge,StringVertex> elementProvider) {
         super(elementProvider);
