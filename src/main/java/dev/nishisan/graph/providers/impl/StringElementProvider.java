@@ -27,12 +27,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * This is a Sample Element Provider, with a fixed IN Memory Map
+ * This is a Sample in Memory Element Provider
  *
  * @author Lucas Nishimura <lucas.nishimura at gmail.com>
  * created 27.10.2023
  */
-public class StringElementProvider implements IElementProvider<String,StringEdge, StringVertex> {
+public class StringElementProvider implements IElementProvider<String, StringEdge, StringVertex> {
 
     private Map<String, StringEdge> edges = new ConcurrentHashMap<>();
     private Map<String, StringVertex> vertexes = new ConcurrentHashMap<>();
@@ -48,8 +48,8 @@ public class StringElementProvider implements IElementProvider<String,StringEdge
     }
 
     @Override
-    public EdgeList<String,StringVertex,StringEdge> getAdjacentEdgesFromVertex(StringVertex vertex, String direction) {
-        EdgeList<String,StringVertex,StringEdge> result = new EdgeList<>();
+    public EdgeList<String, StringVertex, StringEdge> getAdjacentEdgesFromVertex(StringVertex vertex, String direction) {
+        EdgeList<String, StringVertex, StringEdge> result = new EdgeList<>();
         if (direction.equalsIgnoreCase("ANY")) {
             result = this.edges.values().parallelStream().filter(e -> e.contains(vertex)).collect(Collectors.toCollection(EdgeList::new));
         } else if (direction.equals("OUTBOUND")) {
@@ -62,8 +62,8 @@ public class StringElementProvider implements IElementProvider<String,StringEdge
     }
 
     @Override
-    public EdgeList<String,StringVertex,StringEdge> getEdgesByVertex(StringVertex vertex) {
-        EdgeList<String,StringVertex,StringEdge> result = this.edges.values().parallelStream().filter(e -> e.contains(vertex)).collect(Collectors.toCollection(EdgeList::new));
+    public EdgeList<String, StringVertex, StringEdge> getEdgesByVertex(StringVertex vertex) {
+        EdgeList<String, StringVertex, StringEdge> result = this.edges.values().parallelStream().filter(e -> e.contains(vertex)).collect(Collectors.toCollection(EdgeList::new));
         return result;
     }
 

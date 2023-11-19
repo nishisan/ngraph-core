@@ -30,5 +30,5 @@ public class StringVertex extends AbstractVertex<String, StringEdge> {
     public StringVertex(String id, String data) {
         super(id, data);
     }
-
+    
 }

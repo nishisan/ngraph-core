@@ -27,8 +27,9 @@ import dev.nishisan.graph.elements.AbstractEdge;
 public class StringEdge extends AbstractEdge<String, StringVertex> {
 
     public StringEdge(String id,String data) {
-        super(id,data);
-        
+        super(id,data);        
     }
 
+    
+    
 }

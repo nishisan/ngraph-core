@@ -17,6 +17,7 @@
  */
 package dev.nishisan.graph.tests;
 
+import dev.nishisan.graph.elements.impl.StringEdge;
 import dev.nishisan.graph.elements.impl.StringVertex;
 import dev.nishisan.graph.impl.StringGraph;
 import java.util.concurrent.atomic.AtomicLong;
@@ -40,9 +41,10 @@ public class BfsBasicTest {
         StringVertex node5 = graph.addVertex("NODE-5");
         StringVertex node6 = graph.addVertex("NODE-6");
 
-        graph.addEdge(node1, node2);
+        StringEdge n =   graph.addEdge(node1, node2);
         graph.addEdge(node2, node3);
         graph.addEdge(node2, node5);
+        node1.addEdge(n);
         graph.addEdge(node3, node4);
         graph.addEdge(node4, node5);
         graph.addEdge(node5, node6);

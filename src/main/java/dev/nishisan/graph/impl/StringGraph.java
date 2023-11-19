@@ -29,40 +29,42 @@ import dev.nishisan.graph.providers.impl.StringElementProvider;
  * @author Lucas Nishimura <lucas.nishimura at gmail.com>
  * created 27.10.2023
  */
-public class StringGraph extends AbstractGraph<String,StringEdge, StringVertex> {
-
+public class StringGraph extends AbstractGraph<String, StringEdge, StringVertex> {
+    
     public StringGraph() {
         super(new StringElementProvider());
     }
     
-     public StringGraph(int queueCapacity) {
-        super(new StringElementProvider(),queueCapacity);
+    public StringGraph(int queueCapacity) {
+        super(new StringElementProvider(), queueCapacity);
     }
-
-    public StringGraph(IElementProvider<String, StringEdge,StringVertex> elementProvider) {
+    
+    public StringGraph(IElementProvider<String, StringEdge, StringVertex> elementProvider) {
         super(elementProvider);
     }
-
-    public StringGraph(IElementProvider<String, StringEdge,StringVertex> elementProvider, int queueCapacity) {
+    
+    public StringGraph(IElementProvider<String, StringEdge, StringVertex> elementProvider, int queueCapacity) {
         super(elementProvider, queueCapacity);
     }
-
+    
     @Override
     public StringEdge addEdge(StringEdge edge) {
         return this.getProvider().addEdge(edge);
     }
-
+    
     @Override
     public StringEdge addEdge(String id) {
         StringEdge edge = new StringEdge(id, id);
-        return this.addEdge(edge);
+        edge = this.addEdge(edge);
+        this.hello();
+        return edge;
     }
-
+    
     @Override
     public StringVertex addVertex(StringVertex vertex) {
         return this.getProvider().addVertex(vertex);
     }
-
+    
     @Override
     public StringEdge addEdge(StringVertex from, StringVertex to) {
         StringEdge edge = new StringEdge(from.getId() + "." + to.getId(), from.getId() + "." + to.getId());
@@ -70,38 +72,38 @@ public class StringGraph extends AbstractGraph<String,StringEdge, StringVertex> 
         edge.setTo(to);
         return this.addEdge(edge);
     }
-
+    
     @Override
     public StringEdge addEdge(String fromId, String toId) {
         StringVertex from = this.addVertex(fromId);
         StringVertex to = this.addVertex(toId);
         return this.addEdge(from, to);
     }
-
+    
     @Override
     public StringVertex addVertex(String id) {
         StringVertex vertex = new StringVertex(id, id);
         return this.addVertex(vertex);
     }
-
+    
     @Override
     public StringEdge getEdgeById(String id) {
         return this.getProvider().getEdgeById(id);
     }
-
+    
     @Override
     public StringVertex getVertexById(String id) {
         return this.getProvider().getVertexById(id);
     }
-
+    
     @Override
     public Long getVertexCount() {
         return this.getProvider().getVertexCount();
     }
-
+    
     @Override
     public Long getEdgeCount() {
         return this.getProvider().getEdgeCount();
     }
-
+    
 }
